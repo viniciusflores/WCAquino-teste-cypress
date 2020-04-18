@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 describe('Cypress basic', () => {
-  it.only('Should visit a page and assert title', () => {
+  it('Should visit a page and assert title', () => {
     cy.visit('https://wcaquino.me/cypress/componentes.html')
     let syncTitle
     //cy.pause();
@@ -29,9 +29,6 @@ describe('Cypress basic', () => {
     cy.get('#elementosForm\\:sugestoes').then($el => {
       cy.wrap($el).type(syncTitle)
     })
-
-
-  
   })
 
   it('Should find and interact with an element', () => {

@@ -34,7 +34,7 @@ describe('Helpers...', ()=>{
     cy.wrap(obj2).its('endereco.rua').should('contain','bobos')
   })
 
-  it.only('Invoke', () =>{
+  it('Invoke', () =>{
     const getValue = () => 1;
     const soma = (a,b) => a + b;
 

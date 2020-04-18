@@ -41,7 +41,7 @@ describe('Waiters...', () => {
     cy.get('#novoCampo').should('exist')
   })  
 
-  it.only('Should vs Then', ()=> {
+  it('Should vs Then', ()=> {
     cy.get('#buttonListDOM').click()
     // cy.get('#lista li span').should($el => {
     //   console.log($el)
