@@ -24,8 +24,6 @@ describe('Cypress basic', () => {
       .click()
       .should('have.value', 'Obrigado!')
 
-
-
   })
 
 })
