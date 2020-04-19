@@ -8,15 +8,6 @@ describe('Work with iframe', () => {
   beforeEach(()=> {
     cy.reload()
   })
-
-  it('iframe', ()=> {
-    cy.get('#frame1').then(iframe => {
-      const body = iframe.contents().find('body')
-      cy.wrap(body).find('#tField')
-        .type('Funciona?')
-        .should('have.value', 'Funciona?')
-    })
-  })
   
   it('iframe', ()=> {
     cy.get('#frame1').then(iframe => {
