@@ -35,7 +35,6 @@ describe('Dinamic Tests', () => {
       cy.get('[data-testid=dataEsportes]').select('Corrida')
       cy.get('#formCadastrar').click()
       cy.get('#resultado > :nth-child(1)').should('contain','Cadastrado!')
-      //cy.clickAlert('#formCadastrar', 'Tem certeza que voce eh vegetariano?')
     })
 
   
