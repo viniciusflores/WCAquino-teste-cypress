@@ -20,7 +20,7 @@ describe('Work with popup', () => {
   })
 
 
-  describe.only('With links ...', () => {
+  describe('With links ...', () => {
     beforeEach(()=>{
       cy.visit('https://wcaquino.me/cypress/componentes.html')
     })
