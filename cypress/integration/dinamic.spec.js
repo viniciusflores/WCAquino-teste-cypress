@@ -20,5 +20,23 @@ describe('Dinamic Tests', () => {
     })
   })
 
+  it.only('Should be select all using each', () => {
+    cy.get('#formNome').type('usuario')
+      cy.get('[data-cy=dataSobrenome]').type('qualquer')
+      cy.get(`[name=formSexo][value=M]`).click()
+
+      cy.get('[name=formComidaFavorita]').each($el => {
+        if($el.val()!== 'vegetariano'){
+          cy.wrap($el).click()
+        }
+      })
+      
+      cy.get('[data-test=dataEscolaridade]').select('Doutorado')
+      cy.get('[data-testid=dataEsportes]').select('Corrida')
+      cy.get('#formCadastrar').click()
+      cy.get('#resultado > :nth-child(1)').should('contain','Cadastrado!')
+      //cy.clickAlert('#formCadastrar', 'Tem certeza que voce eh vegetariano?')
+    })
+
   
 })
