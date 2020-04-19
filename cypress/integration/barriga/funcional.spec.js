@@ -19,7 +19,7 @@ describe('Should test at a functional level', () => {
   it('Should update an account', () => {
     cy.get(loc.MENU.SETTINGS).click()
     cy.get(loc.MENU.ACCOUNT).click()
-    cy.xpath(loc.ACCOUNT.FN_XP_BTN_ALTERAR('Conta de teste')).click()
+    cy.xpath(loc.ACCOUNT.FN_XP_BTN_ALTERAR('Conta para alterar')).click()
     cy.get(loc.ACCOUNT.NAME)
       .clear()
       .type('Conta alterada')
@@ -29,7 +29,7 @@ describe('Should test at a functional level', () => {
 
   it('Should not create an account with same name', () =>{
     cy.accessMenuAccount();
-    cy.insertAccount('Conta alterada')
+    cy.insertAccount('Conta mesmo nome')
     cy.get(loc.MESSAGE.toast).should('contain', 'code 400')
   })
 
@@ -40,7 +40,7 @@ describe('Should test at a functional level', () => {
     cy.get(loc.MOVIMENTATION.DESCRIPTION).type('desc')
     cy.get(loc.MOVIMENTATION.VALUE).type('123')
     cy.get(loc.MOVIMENTATION.INTERESTED).type('inter')
-    cy.get(loc.MOVIMENTATION.ACCOUNT).select('Conta alterada')
+    cy.get(loc.MOVIMENTATION.ACCOUNT).select('Conta para movimentacoes')
     cy.get(loc.MOVIMENTATION.STATUS).click()
     cy.get(loc.MOVIMENTATION.BTN_SAVE).click()
 
@@ -49,13 +49,13 @@ describe('Should test at a functional level', () => {
 
   it('Should get balance', ()=> {
     cy.get(loc.MENU.HOME).click()
-    cy.xpath(loc.HOME.FN_XP_HOME_BALANCE_ACCOUNT('Conta alterada'))
-      .should('contain', '123,00')
+    cy.xpath(loc.HOME.FN_XP_HOME_BALANCE_ACCOUNT('Conta para saldo'))
+      .should('contain', '534,00')
   })
 
   it('Should remove a transaction', ()=> {
     cy.get(loc.MENU.EXTRACT).click()
-    cy.xpath(loc.EXTRACT.FN_XP_REMOVE_ELEMENT('desc')).click()
+    cy.xpath(loc.EXTRACT.FN_XP_REMOVE_ELEMENT('Movimentacao para exclusao')).click()
     cy.get(loc.MESSAGE.toast).should('contain','sucesso')
   })
 })

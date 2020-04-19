@@ -31,7 +31,7 @@ const locators = {
   EXTRACT: {
     LINES: '.list-group > li',
     FN_XP_FIND_ELEMENT: (desc, value) => `//span[contains(.,'${desc}')]/following-sibling::small[contains(.,'${value}')]`,
-    FN_XP_REMOVE_ELEMENT: conta => `span[contains(.,'${conta}')]/../../..//i[@class='far fa-trash-alt']`,
+    FN_XP_REMOVE_ELEMENT: conta => `//span[contains(.,'${conta}')]/../../..//i[@class='far fa-trash-alt']`,
   },
   MESSAGE: {
     toast: '.toast-message'
