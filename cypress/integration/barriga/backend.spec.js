@@ -1,24 +1,18 @@
 /// <reference types="cypress"/>
 
 describe('Should test at a backend level', ()=> {
-  let token
-
   before(()=>{
     cy.getToken('vini@vini', 'vini')
-    .then(tkn => {
-      token = tkn
-    })
   })
   
   beforeEach(()=> {
-    cy.resetRest(token)
+    cy.resetRest()
   })
 
   it('Should create an account',()=>{
     cy.request({
       method: 'POST',
       url: '/contas',
-      headers: { Authorization: `JWT ${token}` },
       body: {
         nome: 'conta via rest'
       }
@@ -32,11 +26,10 @@ describe('Should test at a backend level', ()=> {
   })
 
   it('Should update an account', () => {
-    cy.getAccountIdByName(token, 'Conta para alterar').then(contaId => {
+    cy.getAccountIdByName('Conta para alterar').then(contaId => {
       cy.request({
         method: 'PUT',
         url:`/contas/${contaId}`,
-        headers: { Authorization: `JWT ${token}` },
         body: {
           nome: 'conta alterada via rest'
         }
@@ -51,7 +44,6 @@ describe('Should test at a backend level', ()=> {
     cy.request({
       method: 'POST',
       url: '/contas',
-      headers: { Authorization: `JWT ${token}` },
       body: {
         nome: 'Conta mesmo nome'
       },
@@ -65,11 +57,10 @@ describe('Should test at a backend level', ()=> {
   })
 
   it('Should create a transaction', ()=> {
-    cy.getAccountIdByName(token, 'Conta para alterar').then(contaId => {
+    cy.getAccountIdByName('Conta para alterar').then(contaId => {
       cy.request({
         method: 'POST',
         url: '/transacoes',
-        headers: { Authorization: `JWT ${token}` },
         body: {
           conta_id: contaId,
           data_pagamento: Cypress.moment().add({days:1}).format('DD/MM/YYYY'),
@@ -91,7 +82,6 @@ describe('Should test at a backend level', ()=> {
     cy.request({
       method: 'GET',
       url:'/saldo',
-      headers: { Authorization: `JWT ${token}` },
     }).then(res => {
         let saldoConta = null
         res.body.forEach(c => {
@@ -105,13 +95,11 @@ describe('Should test at a backend level', ()=> {
     cy.request({
       method: 'GET',
       url: '/transacoes',
-      headers: { Authorization: `JWT ${token}` },
       qs: { descricao: 'Movimentacao para exclusao' }
     }).then(res => {
         cy.request({
           url: `/transacoes/${res.body[0].id}`,
           method: 'DELETE',
-          headers: { Authorization: `JWT ${token}` },
         })
         .its('status')
         .should('be.equal', 204)
