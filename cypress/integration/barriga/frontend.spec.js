@@ -115,7 +115,7 @@ describe('Should test at a frontend level', () => {
     cy.get(loc.MESSAGE.toast).should('contain','sucesso')
    })
 
-   it.only('Should validate data send to create an account', ()=> {
+   it('Should validate data send to create an account', ()=> {
     // const reqStub = cy.stub()
     
     cy.route({
@@ -151,5 +151,11 @@ describe('Should test at a frontend level', () => {
 
     cy.get(loc.MESSAGE.toast).should('contain', 'Conta inserida com sucesso')
 
+  })
+
+  it('Should test responsiveness', () => {
+    cy.get('[data-test=menu-home]').should('exist').and('be.visible')
+    cy.viewport(500,700)
+    cy.get('[data-test=menu-home]').should('exist').and('be.not.visible')
   })
 })

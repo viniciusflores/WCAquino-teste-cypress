@@ -20,7 +20,7 @@ describe('Dinamic Tests', () => {
     })
   })
 
-  it.only('Should be select all using each', () => {
+  it('Should be select all using each', () => {
     cy.get('#formNome').type('usuario')
       cy.get('[data-cy=dataSobrenome]').type('qualquer')
       cy.get(`[name=formSexo][value=M]`).click()
